@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block title %} {% endblock %}
 {% block content %}
-<div class="row">
+<!--<div class="row">
     <div class="col-9">
         
         <div class="row">
@@ -30,12 +30,16 @@
             <div class="card-footer">Footer</div>
         </div>
     </div>
-</div>
-<!--<table>
+</div>-->
+<table>
     <tr>
         <th>User</th>
         <th>Movie</th>
-        <th>Genre</th>
+        <th>Genre group_concat</th>
+        <th>Genre 1</th>
+        <th>Genre 2</th>
+        <th>Genre 3</th>
+        <th>Genre 4</th>
         <th>Action</th>
     </tr>
     {% for row in result %}
@@ -43,10 +47,15 @@
         <td>{{ row.first_name }}</td>
         <td>{{ row.movie_name }}</td>
         <td>{{ row["GROUP_CONCAT(genre.Genre_name)"]}}</td>
+        <td>{{ row.Genre_name}}</td>
+        {% set list = row["GROUP_CONCAT(genre.Genre_name)"].split(',') %}
+        <td>{{ list[1]}}</td>
+        <td>{{ list[2]}}</td>
+        <td>{{ list[3]}}</td>
         <td>
             <a href="/unwatch?id={{row['user_movie.id']}}">Unwatch</a>
         </td>
     </tr>
     {% endfor %}
-</table>-->
+</table>
 {% endblock %}
